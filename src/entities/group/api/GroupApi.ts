@@ -142,7 +142,6 @@ const groupProducts: Record<string, IGroupProduct> = {
 export default class GroupApi {
 
     static allGroups(): Promise<Array<IGroup>> {
-<<<<<<< HEAD
         // return new Promise<Array<IGroup>>( (resolve, reject) => {
         //     setTimeout(
         //         () => resolve(groups),
@@ -180,21 +179,6 @@ export default class GroupApi {
         //         1000
         //     )
         // } );
-=======
-        return ApiBase.getCached("/groups", null, groups) as Promise<Array<IGroup>>;
-    }
-
-    static groupDetails(slug:string): Promise<IGroupProduct> {
-        return ApiBase.getCached(
-            `/groups/${slug}`, 
-            null, {
-                group: groups.find(g => g.slug == slug),
-                products: typeof groupProducts[slug] == 'undefined'
-                ? [] 
-                : groupProducts[slug].products,
-            }            
-        ) as Promise<IGroupProduct>;
->>>>>>> ce34a65b82723be3490004be8708127ff8553d5c
     }
 
 }

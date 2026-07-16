@@ -9,9 +9,5 @@ export default interface IAppContext {
     setUser(user:IUser|undefined):void,
     isLoading:boolean, 
     setLoading(isLoading:boolean):void,
-<<<<<<< HEAD
     showAlert(alertData:IAlertData | null):void,
-=======
-    showAlert(alertData:IAlertData|null):void,
->>>>>>> ce34a65b82723be3490004be8708127ff8553d5c
 }

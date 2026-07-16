@@ -17,7 +17,7 @@ type PageModes = (typeof PageModes)[keyof typeof PageModes];
 
 
 export default function Auth() {
-    const {user} = useContext(AppContext);
+    const { user } = useContext(AppContext);
 
     const [pageMode, setPageMode] = useState<PageModes>(user ? PageModes.profile : PageModes.signIn);
 
@@ -39,7 +39,7 @@ function SignIn() {
     const [login, setLogin] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [isFormValid, setFormValid] = useState<boolean>(false);
-    const {setUser} = useContext(AppContext);
+    const { setUser, setLoading } = useContext(AppContext);
 
     useEffect(() => {
         setFormValid(
@@ -49,25 +49,28 @@ function SignIn() {
     }, [login, password]);
 
     const signInClick = () => {
+        setLoading(true);
+
         UserApi.authenticate(login, password)
-        .then(u => {
-            // if(rememberMe)
-            // забезпечуємо збереження даних користувача у постійному сховищі браузера
-            rememberUser(u);
-            setUser(u);
-        })
-        .catch(err => {
-            if(err === 401) {
-                alert("У вході відмовлено. Перевірьте введені дані")
-            }
-        });
+            .then(u => {
+                rememberUser(u);
+                setUser(u);
+            })
+            .catch(err => {
+                if (err === 401) {
+                    alert("У вході відмовлено. Перевірьте введені дані");
+                }
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
 
     return <div className='auth-form-content mx-3 my-4'>
         <div className="input-group mb-3">
             <span className="input-group-text" id="login-addon"><i className="bi bi-lock"></i></span>
             <input className="form-control"
-                type='text' placeholder='Логін' 
+                type='text' placeholder='Логін'
                 value={login} onChange={e => setLogin(e.target.value)}
                 aria-label="Username" aria-describedby="login-addon" />
         </div>
@@ -78,11 +81,11 @@ function SignIn() {
                 value={password} onChange={e => setPassword(e.target.value)}
                 aria-label="Password" aria-describedby="password-addon" />
         </div>
-        
-        <button 
+
+        <button
             className={`btn ${isFormValid ? 'btn-primary' : 'btn-secondary'}`}
             onClick={isFormValid ? signInClick : undefined}>
-                Вхід
+            Вхід
         </button>
     </div>;
 }
