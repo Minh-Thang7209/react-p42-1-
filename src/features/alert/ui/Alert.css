@@ -1,0 +1,30 @@
+.alert-bg {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+<<<<<<< HEAD
+    background-color: #77777777;
+=======
+    background-color: #777777a7;
+>>>>>>> ce34a65b82723be3490004be8708127ff8553d5c
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+<<<<<<< HEAD
+
+=======
+>>>>>>> ce34a65b82723be3490004be8708127ff8553d5c
+.alert-fg {
+    background-color: #fcfcfc;
+    width: 33vw;
+    min-width: 300px;
+    height: 40vh;
+<<<<<<< HEAD
+    min-height: 450px;
+=======
+    min-height: 300px;
+>>>>>>> ce34a65b82723be3490004be8708127ff8553d5c
+}
