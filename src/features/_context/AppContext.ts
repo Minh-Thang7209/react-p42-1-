@@ -18,11 +18,7 @@ const AppContext = createContext<IAppContext>({
         throw "setLoading: Not implemented";
     },
     showAlert(_) {
-<<<<<<< HEAD
-        throw "setAlert: Not implemented";
-=======
         throw "showAlert: Not implemented";
->>>>>>> ce34a65b82723be3490004be8708127ff8553d5c
     },
 });
 

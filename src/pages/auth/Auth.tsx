@@ -17,10 +17,20 @@ type PageModes = (typeof PageModes)[keyof typeof PageModes];
 
 
 export default function Auth() {
-    const { user } = useContext(AppContext);
+    const { user, isLoading } = useContext(AppContext);
 
     const [pageMode, setPageMode] = useState<PageModes>(user ? PageModes.profile : PageModes.signIn);
 
+    if (isLoading) {
+        return (
+            <div className="d-flex justify-content-center align-items-center vh-100">
+                <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        );
+    }
+    
     return user ? <Profile /> : <div className='auth-container'>
         <div className='auth-form'>
             <h2 className='auth-header'>
